@@ -3,6 +3,7 @@
 *~
 .bundle
 Gemfile.lock
+gemfiles/*.lock
 vendor/
 doc/
 tmp/
