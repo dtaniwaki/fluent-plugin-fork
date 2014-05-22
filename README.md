@@ -1,8 +1,9 @@
-[![Build Status](https://secure.travis-ci.org/dtaniwaki/fluent-plugin-fork.png?branch=master)](http://travis-ci.org/dtaniwaki/fluent-plugin-fork) [![Coverage Status](https://coveralls.io/repos/dtaniwaki/fluent-plugin-fork/badge.png?branch=master)](https://coveralls.io/r/dtaniwaki/fluent-plugin-fork?branch=master)
-
 # fluent-plugin-fork
 
-Fork output by separating values for fluentd
+[![Gem Version](https://badge.fury.io/rb/fluent-plugin-fork.png)](https://rubygems.org/gems/fluent-plugin-fork) [![Build Status](https://secure.travis-ci.org/dtaniwaki/fluent-plugin-fork.png?branch=master)](http://travis-ci.org/dtaniwaki/fluent-plugin-fork) [![Coverage Status](https://coveralls.io/repos/dtaniwaki/fluent-plugin-fork/badge.png?branch=master)](https://coveralls.io/r/dtaniwaki/fluent-plugin-fork?branch=master)
+
+Fork output by separating values for [fluentd](http://fluentd.org/).
+
 
 # Installation
 
