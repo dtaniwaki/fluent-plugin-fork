@@ -55,10 +55,10 @@ module Fluent
           Engine.emit(@output_tag, time, record.reject{ |k, v| k == @fork_key }.merge(@output_key => value))
         end
       end
-
-      chain.next
     rescue => e
       log.error "#{e.message}: #{e.backtrace.join(', ')}"
+    ensure
+      chain.next
     end
   end
 end

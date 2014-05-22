@@ -66,11 +66,21 @@ describe Fluent::ForkOutput do
       expect(subject.emits).to include(["ot", time, {"ok" => "4"}])
     end
     it "forks with other params" do
-      subject.run { subject.emit({"sk" => "2,3,4,3", "o1" => 1, "o2" => 2}, time) }
-      expect(subject.emits.size).to eq(3)
+      subject.run { subject.emit({"sk" => "2,3,4,5", "o1" => 1, "o2" => 2}, time) }
+      expect(subject.emits.size).to eq(4)
       expect(subject.emits).to include(["ot", time, {"ok" => "2", "o1" => 1, "o2" => 2}])
       expect(subject.emits).to include(["ot", time, {"ok" => "3", "o1" => 1, "o2" => 2}])
       expect(subject.emits).to include(["ot", time, {"ok" => "4", "o1" => 1, "o2" => 2}])
+      expect(subject.emits).to include(["ot", time, {"ok" => "5", "o1" => 1, "o2" => 2}])
+    end
+    it "does nothing for empty value" do
+      subject.run { subject.emit({"o1" => 1, "o2" => 2}, time) }
+      expect(subject.emits.size).to eq(0)
+    end
+    it "ignores exceptions and writes down the log" do
+      expect(subject.instance.log).to receive(:error).with(/^The error/)
+      allow_any_instance_of(String).to receive(:split).and_raise("The error")
+      subject.emit({"sk" => "2,3,4,5", "o1" => 1, "o2" => 2}, time)
     end
     context "with no_unique option" do
       let(:params) { required_params.merge(no_unique: true) }
