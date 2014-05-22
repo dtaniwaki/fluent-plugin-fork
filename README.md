@@ -4,6 +4,21 @@
 
 Fork output by separating values for [fluentd](http://fluentd.org/).
 
+### Example
+
+You can fork the following data
+
+```
+{"id": "1", "key": "2", "segments": "1,2,3"}
+```
+
+to
+
+```
+{"id": "1", "key": "2", "segments": "1"}
+{"id": "1", "key": "2", "segments": "2"}
+{"id": "1", "key": "2", "segments": "3"}
+```
 
 # Installation
 
