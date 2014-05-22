@@ -6,19 +6,19 @@ Fork output by separating values for fluentd
 
 # Installation
 
-## td-agent(Linux)
+### td-agent(Linux)
 
 ```
 /usr/lib64/fluent/ruby/bin/fluent-gem install fluent-plugin-fork
 ```
 
-## td-agent(Mac)
+### td-agent(Mac)
 
 ```
 sudo /usr/local/Cellar/td-agent/1.1.XX/bin/fluent-gem install fluent-plugin-fork
 ```
 
-## fluentd only
+### fluentd only
 
 ```
 gem install fluent-plugin-fork
@@ -36,46 +36,46 @@ max_fallback log
 no_unique    true
 ```
 
-## output_tag
+### output_tag
 
 Tag to output forked values
 
-## output_key
+### output_key
 
 Key name to output forked values
 
-## fork_key
+### fork_key
 
 Key name to fork
 
-## separator (Optional)
+### separator (Optional)
 
 Separator to separate the values
 
-Default: ,
+Default: `,`
 
-## max_size (Optional)
+### max_size (Optional)
 
 Max size of forked values.
 
-Default: nil
+Default: `nil`
 
-## max_fallback (Optional)
+### max_fallback (Optional)
 
 Strategy when the size of values exceeds max_size. Only effective when you set max_size.
 
 `log` to log the record
 `drop` to drop exceeded values
 
-Default: log
+Default: `log`
 
-## no_unique (Optional)
+### no_unique (Optional)
 
 Flag to emit redundant values.
 
-Default: false
+Default: `false`
 
-## Contributing
+# Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -83,6 +83,6 @@ Default: false
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new [Pull Request](../../pull/new/master)
 
-## Copyright
+# Copyright
 
 Copyright (c) 2014 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
