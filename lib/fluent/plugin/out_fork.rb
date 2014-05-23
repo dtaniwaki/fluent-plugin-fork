@@ -23,7 +23,7 @@ module Fluent
     def configure(conf)
       super
 
-      fallbacks = %w(drop log)
+      fallbacks = %w(skip drop log)
       raise Fluent::ConfigError, "max_fallback must be one of #{fallbacks.inspect}" unless fallbacks.include?(@max_fallback)
     end
 
@@ -42,6 +42,9 @@ module Fluent
 
         if @max_size && @max_size < values.size
           case @max_fallback
+          when 'skip'
+            log.warn "#{tag} - #{time}: Skip too many forked values (max=#{@max_size}) : #{org_value}"
+            next
           when 'drop'
             log.warn "#{tag} - #{time}: Drop too many forked values (max=#{@max_size}) : #{org_value}"
             values = values.take(@max_size)

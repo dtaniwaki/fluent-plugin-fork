@@ -122,6 +122,13 @@ describe Fluent::ForkOutput do
           expect(subject.emits).to include(["ot", time, {"ok" => "4"}])
         end
       end
+      describe "skip" do
+        let(:params) { required_params.merge(max_size: 3, max_fallback: 'skip') }
+        it "skip the values" do
+          subject.run { subject.emit({"sk" => "2,3,4,5"}, time) }
+          expect(subject.emits.size).to eq(0)
+        end
+      end
     end
   end
 end
