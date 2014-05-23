@@ -78,10 +78,13 @@ Default: `nil`
 
 ### max_fallback (Optional)
 
-Strategy when the size of values exceeds max_size. Only effective when you set max_size.
+Strategy when the size of values exceeds `max_size`. Only effective when you set `max_size`.
 
 `log` to log the record
+
 `drop` to drop exceeded values
+
+`skip` to skip the values
 
 Default: `log`
 
