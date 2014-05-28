@@ -20,7 +20,7 @@ to
 {"id": "1", "key": "2", "segments": "3"}
 ```
 
-# Installation
+## Installation
 
 ### td-agent(Linux)
 
@@ -40,7 +40,7 @@ sudo /usr/local/Cellar/td-agent/1.1.XX/bin/fluent-gem install fluent-plugin-fork
 gem install fluent-plugin-fork
 ```
 
-# Configuration
+## Configuration
 
 ```
 output_tag   tag_to_output
@@ -94,7 +94,7 @@ Flag to emit redundant values.
 
 Default: `false`
 
-# Contributing
+## Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
@@ -102,6 +102,6 @@ Default: `false`
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new [Pull Request](../../pull/new/master)
 
-# Copyright
+## Copyright
 
 Copyright (c) 2014 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
