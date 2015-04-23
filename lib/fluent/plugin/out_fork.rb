@@ -43,6 +43,8 @@ module Fluent
           values = org_value.split(@separator)
         when 'array'
           values = org_value
+        else
+          values = org_value
         end
 
         values = values.uniq unless @no_unique
