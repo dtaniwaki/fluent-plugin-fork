@@ -15,6 +15,7 @@ module Fluent
     config_param :output_tag,    :string
     config_param :output_key,    :string
     config_param :fork_key,      :string
+    config_param :fork_value_type, :string, default: 'csv'
     config_param :separator,     :string,  default: ','
     config_param :max_size,      :integer, default: nil
     config_param :max_fallback,  :string,  default: 'log'
@@ -36,7 +37,15 @@ module Fluent
         end
         log.trace "#{tag} - #{time}: try to fork #{@fork_key}=#{org_value}"
 
-        values = org_value.split(@separator)
+        values = []
+        case @fork_value_type
+        when 'csv'
+          values = org_value.split(@separator)
+        when 'array'
+          values = org_value
+        else
+          values = org_value
+        end
 
         values = values.uniq unless @no_unique
 
