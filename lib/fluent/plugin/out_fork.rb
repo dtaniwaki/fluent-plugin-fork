@@ -20,6 +20,7 @@ module Fluent
     config_param :max_size,      :integer, default: nil
     config_param :max_fallback,  :string,  default: 'log'
     config_param :no_unique,     :bool,    default: false
+    config_param :index_key,     :string,  default: nil
 
     def configure(conf)
       super
@@ -62,9 +63,11 @@ module Fluent
           end
         end
 
-        values.reject{ |value| value.to_s == '' }.each do |value|
+        values.reject{ |value| value.to_s == '' }.each_with_index do |value, i|
           log.trace "#{tag} - #{time}: reemit #{@output_key}=#{value} for #{@output_tag}"
-          Engine.emit(@output_tag, time, record.reject{ |k, v| k == @fork_key }.merge(@output_key => value))
+          new_record = record.reject{ |k, v| k == @fork_key }.merge(@output_key => value)
+          new_record.merge!(@index_key => i) unless @index_key.nil?
+          Engine.emit(@output_tag, time, new_record)
         end
       end
     rescue => e
