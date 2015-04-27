@@ -30,6 +30,7 @@ describe Fluent::ForkOutput do
         expect(subject.instance.no_unique).to eq(false)
         expect(subject.instance.max_size).to eq(nil)
         expect(subject.instance.max_fallback).to eq('log')
+        expect(subject.instance.index_key).to eq(nil)
       end
     end
     context "with invalid fallback" do
@@ -128,6 +129,16 @@ describe Fluent::ForkOutput do
           subject.run { subject.emit({"sk" => "2,3,4,5"}, time) }
           expect(subject.emits.size).to eq(0)
         end
+      end
+    end
+    context "with index_key option" do
+      let(:params) { required_params.merge(index_key: 'idx') }
+      it "add index number" do
+        subject.run { subject.emit({"sk" => "2,3,4,5"}, time) }
+        expect(subject.emits).to include(["ot", time, {"ok" => "2", "idx" => 0}])
+        expect(subject.emits).to include(["ot", time, {"ok" => "3", "idx" => 1}])
+        expect(subject.emits).to include(["ot", time, {"ok" => "4", "idx" => 2}])
+        expect(subject.emits).to include(["ot", time, {"ok" => "5", "idx" => 3}])
       end
     end
   end

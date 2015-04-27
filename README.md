@@ -50,6 +50,7 @@ fork_key     key_to_fork
 max_size     15
 max_fallback log
 no_unique    true
+index_key    idx
 ```
 
 ### output_tag
@@ -93,6 +94,12 @@ Default: `log`
 Flag to emit redundant values.
 
 Default: `false`
+
+### index_key (Optional)
+
+Field name to add index number of each values.
+
+Default: `nil`
 
 ## Contributing
 
