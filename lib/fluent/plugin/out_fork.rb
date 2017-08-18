@@ -8,6 +8,10 @@ module Fluent
       define_method(:log) { $log }
     end
 
+    unless method_defined?(:router)
+      define_method(:router) { Fluent::Engine }
+    end
+
     def initialize
       super
     end
@@ -67,7 +71,7 @@ module Fluent
           log.trace "#{tag} - #{time}: reemit #{@output_key}=#{value} for #{@output_tag}"
           new_record = record.reject{ |k, v| k == @fork_key }.merge(@output_key => value)
           new_record.merge!(@index_key => i) unless @index_key.nil?
-          Engine.emit(@output_tag, time, new_record)
+          router.emit(@output_tag, time, new_record)
         end
       end
     rescue => e
