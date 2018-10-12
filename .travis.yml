@@ -1,9 +1,10 @@
 language: ruby
 
 rvm:
-  - 1.9.3
-  - 2.0.0
-  - 2.1.0
+  - 2.1
+  - 2.2
+  - 2.3.4
+  - 2.4.1
 gemfile:
   - gemfiles/gemfile
   - gemfiles/fluentd.0.10.42.gemfile
@@ -13,3 +14,11 @@ script: "bundle exec rake spec"
 branches:
   only:
     - master
+matrix:
+  exclude:
+    - rvm: 2.2
+      gemfile: gemfiles/fluentd.0.10.42.gemfile
+    - rvm: 2.3.4
+      gemfile: gemfiles/fluentd.0.10.42.gemfile
+    - rvm: 2.4.1
+      gemfile: gemfiles/fluentd.0.10.42.gemfile
