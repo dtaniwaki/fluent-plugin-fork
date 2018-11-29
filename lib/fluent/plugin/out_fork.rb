@@ -1,16 +1,12 @@
-module Fluent
+require 'fluent/plugin/output'
+
+module Fluent::Plugin
   class ForkOutput < Output
     class MaxForkSizeError < StandardError; end
 
     Fluent::Plugin.register_output('fork', self)
 
-    unless method_defined?(:log)
-      define_method(:log) { $log }
-    end
-
-    unless method_defined?(:router)
-      define_method(:router) { Fluent::Engine }
-    end
+    helpers :event_emitter
 
     def initialize
       super
@@ -33,7 +29,7 @@ module Fluent
       raise Fluent::ConfigError, "max_fallback must be one of #{fallbacks.inspect}" unless fallbacks.include?(@max_fallback)
     end
 
-    def emit(tag, es, chain)
+    def process(tag, es)
       es.each do |time, record|
         org_value = record[@fork_key]
         if org_value.nil?
@@ -76,8 +72,6 @@ module Fluent
       end
     rescue => e
       log.error "#{e.message}: #{e.backtrace.join(', ')}"
-    ensure
-      chain.next
     end
   end
 end
