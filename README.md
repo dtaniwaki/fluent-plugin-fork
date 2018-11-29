@@ -20,6 +20,13 @@ to
 {"id": "1", "key": "2", "segments": "3"}
 ```
 
+## Requirements
+
+| fluent-plugin-fork | Fluentd          | Ruby   |
+|--------------------|------------------|--------|
+| >= 0.2.0           | >= v0.14, < v2.0 | >= 2.1 |
+| < 0.2.0            | <= v0.14         | >= 1.9 |
+
 ## Installation
 
 ### td-agent(Linux)
